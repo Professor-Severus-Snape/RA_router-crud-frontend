@@ -1,5 +1,44 @@
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
+
+import Layout from './components/Layout/Layout';
+import Posts from './pages/Posts/Posts';
+// import PostRead from './pages/PostRead/PostRead';
+// import PostCreate from './pages/PostCreate/PostCreate';
+// import PostUpdate from './pages/PostUpdate/PostUpdate';
+
 const App = () => {
-  return <>hello</>;
+  const routes = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Posts />} />
+        {/* <Route index element={<PostRead />} /> */}
+        {/* <Route index element={<PostCreate />} /> */}
+        {/* <Route index element={<PostUpdate />} /> */}
+      </Route>
+    ),
+    {
+      future: {
+        v7_relativeSplatPath: true,
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_skipActionErrorRevalidation: true,
+      },
+    }
+  );
+  return (
+    <RouterProvider
+      router={routes}
+      future={{
+        v7_startTransition: true,
+      }}
+    />
+  );
 };
 
 export default App;

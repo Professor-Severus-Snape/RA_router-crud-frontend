@@ -1,0 +1,33 @@
+.post-footer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.post-footer__avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  background-color: grey;
+  cursor: pointer;
+}
+
+.post-footer__input {
+  width: calc(100% - 50px - 20px);
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 10px 140px 10px 10px;
+
+  font-size: inherit;
+
+  background: url("../../../assets/smile.svg") right 100px center / 20px no-repeat,
+    url("../../../assets/gif.svg") right 60px center / 20px no-repeat,
+    url("../../../assets/note.svg") right 20px center / 20px no-repeat;
+
+  background-color: rgb(230, 230, 230);
+}
+
+.post-footer__input:focus {
+  outline: 1px solid #006aff;
+}

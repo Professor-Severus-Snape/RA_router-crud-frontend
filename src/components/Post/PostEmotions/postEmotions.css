@@ -1,0 +1,35 @@
+.post-emotions {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding: 5px;
+
+  color: grey;
+}
+
+.post-emotions__likes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+.post-emotions__like-icon {
+  width: 30px;
+}
+
+.post-emotions__comments {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+}
+
+.post-emotions__comment-icon {
+  width: 30px;
+}
