@@ -8,7 +8,8 @@ const PostUpdate = () => {
     <>
       <HeaderCancel />
       <div className="post">
-        <PostHeader />
+        {/* TODO: передавать дату и время поста!!! */}
+        <PostHeader created={Date.now()}/>
         {/* TODO: получать текст заметки и передавать в форму!!! */}
         <PostForm btnAction="Сохранить" />
       </div>

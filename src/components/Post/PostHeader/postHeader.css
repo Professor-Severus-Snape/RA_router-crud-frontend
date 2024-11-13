@@ -13,12 +13,20 @@
   cursor: pointer;
 }
 
-.post-header__author {
-  margin-bottom: 10px;
+.post-header__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
+.post-header__author {
   color: #006aff;
   font-size: 30px;
   font-weight: 600;
 
   cursor: pointer;
+}
+
+.post-header__date {
+  color: grey;
 }

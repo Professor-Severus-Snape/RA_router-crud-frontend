@@ -8,7 +8,7 @@ const PostCreate = () => {
     <>
       <HeaderCancel />
       <div className="post">
-        <PostHeader />
+        <PostHeader created={Date.now()}/>
         <PostForm btnAction="Опубликовать" />
       </div>
     </>

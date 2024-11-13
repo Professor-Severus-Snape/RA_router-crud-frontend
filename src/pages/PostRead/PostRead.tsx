@@ -10,8 +10,10 @@ const PostRead = () => {
     <>
       <HeaderCancel />
       <div className="post">
-        <PostHeader />
-        <PostContent />
+        {/* TODO: передавать время создания поста: */}
+        <PostHeader created={Date.now()}/>
+        {/* TODO: передавать текст поста: */}
+        <PostContent content='некий текст'/>
         <PostEmotions />
         <footer className="post__footer">
           <div className="post__links">
