@@ -17,11 +17,12 @@
   width: calc(100% - 50px - 20px);
   border: 1px solid grey;
   border-radius: 20px;
-  padding: 10px 140px 10px 10px;
+  padding: 10px 180px 10px 10px;
 
   font-size: inherit;
 
-  background: url("../../../assets/smile.svg") right 100px center / 20px no-repeat,
+  background: url("../../../assets/smile.svg") right 140px center / 20px no-repeat,
+    url("../../../assets/camera.svg") right 100px center / 20px no-repeat,
     url("../../../assets/gif.svg") right 60px center / 20px no-repeat,
     url("../../../assets/note.svg") right 20px center / 20px no-repeat;
 
