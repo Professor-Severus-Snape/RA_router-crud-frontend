@@ -34,7 +34,7 @@ const PostRead = () => {
   }, [id]);
 
   const handleDelete = () => {
-    const createPutRequest = async () => {
+    const createDeleteRequest = async () => {
       const baseUrl = import.meta.env.VITE_BASE_URL;
 
       const options = {
@@ -48,7 +48,7 @@ const PostRead = () => {
       }
     };
 
-    createPutRequest();
+    createDeleteRequest();
   };
 
   return (
@@ -63,7 +63,7 @@ const PostRead = () => {
           <footer className="post__footer">
             <div className="post__links">
               {/* TODO: поменять роуты! */}
-              <Link to="/" className="post__change">Изменить</Link>
+              <Link to={`/posts/update/${id}`} className="post__change">Изменить</Link>
               <Link to="/" className="post__delete" onClick={handleDelete}>Удалить</Link>
             </div>
           </footer>
