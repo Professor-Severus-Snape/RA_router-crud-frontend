@@ -12,7 +12,7 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const createPostRequest = async () => {
+  const createPostRequest = async (validContent: string) => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const options = {
@@ -21,7 +21,7 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        content: content,
+        content: validContent,
       }),
     };
 
@@ -32,7 +32,7 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
     }
   };
 
-  const createPutRequest = async () => {
+  const createPutRequest = async (validContent: string) => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const options = {
@@ -41,7 +41,7 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        content: content,
+        content: validContent,
       }),
     };
 
@@ -59,20 +59,29 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // отмена перезагрузки страницы
+
+    const validContent = content.trim();
+
+    // если заметка пустая:
+    if (!validContent) {
+      setContent(''); // очистка поля textarea от пробелов
+      return;
+    }
+
     switch (btnAction) {
       case 'Опубликовать':
-        createPostRequest(); // отправка POST-запроса на сервер с данными textarea <- CREATE
+        createPostRequest(validContent); // POST-запрос на сервер с данными textarea <- CREATE
         navigate('/'); // возврат на главную страницу
         return;
       case 'Сохранить':
-        createPutRequest(); // отправка PUT-запроса на сервер с данными textarea <- UPDATE
+        createPutRequest(validContent); // PUT-запрос на сервер с данными textarea <- UPDATE
         navigate('/'); // возврат на главную страницу
     }
   };
 
   return (
     <form className="post-form" onSubmit={handleSubmit}>
-      <textarea className="post-form__textarea" value={content} onChange={handleChange} />
+      <textarea className="post-form__textarea" value={content} onChange={handleChange} required />
       <button type="submit" className="post-form__btn">{btnAction}</button>
     </form>
   );
