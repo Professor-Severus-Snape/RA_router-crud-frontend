@@ -29,9 +29,17 @@
   background-color: #006aff;
 }
 
+.post__change:focus {
+  outline: 1px solid #006aff;
+}
+
 .post__delete {
   padding: 10px;
   border-radius: 5px;
   color: #fff;
   background-color: rgb(255, 98, 98);
+}
+
+.post__delete:focus {
+  outline: 1px solid rgb(255, 98, 98);
 }

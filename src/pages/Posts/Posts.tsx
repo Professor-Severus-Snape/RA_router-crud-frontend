@@ -19,7 +19,7 @@ const Posts = () => {
       }
 
       const json = await response.json();
-      setPosts(json);
+      setPosts(json.reverse()); // отображение самого свежего поста сверху
     } catch (err) {
       console.log('err: ', err);
     }
@@ -27,7 +27,7 @@ const Posts = () => {
 
   useEffect(() => {
     createGetRequest();
-  }, []);
+  }, []); // FIXME: Что указать в зависимостях, чтобы при создании поста, пост сразу подтягивался?
 
   return (
     <>

@@ -10,7 +10,7 @@
   width: 100%;
   min-height: 150px;
   resize: none;
-  
+
   font-size: inherit;
 
   background-color: lightgray;
@@ -22,7 +22,7 @@
 
 .post-form__btn {
   place-self: flex-end;
-  
+
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -31,4 +31,8 @@
   font-size: inherit;
 
   background-color: #006aff;
+}
+
+.post-form__btn:focus {
+  outline: 1px solid #006aff;
 }

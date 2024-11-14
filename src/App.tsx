@@ -8,7 +8,7 @@ import {
 import Layout from './components/Layout/Layout';
 import Posts from './pages/Posts/Posts';
 import PostRead from './pages/PostRead/PostRead';
-// import PostCreate from './pages/PostCreate/PostCreate';
+import PostCreate from './pages/PostCreate/PostCreate';
 // import PostUpdate from './pages/PostUpdate/PostUpdate';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Posts />} />
         <Route path="/posts/:id" element={<PostRead />} />
-        {/* <Route index element={<PostCreate />} /> */}
+        <Route path="/posts/new" element={<PostCreate />} />
         {/* <Route index element={<PostUpdate />} /> */}
       </Route>
     ),
