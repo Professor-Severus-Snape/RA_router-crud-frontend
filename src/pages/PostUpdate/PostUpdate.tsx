@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import HeaderCancel from '../../components/HeaderCancel/HeaderCancel';
+import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import PostForm from '../../components/Post/PostForm/PostForm';
 import PostHeader from '../../components/Post/PostHeader/PostHeader';
 import './postUpdate.css';
@@ -10,6 +10,7 @@ const PostUpdate = () => {
   const [post, setPost] = useState<IPost | null>(null);
   const { id } = useParams();
 
+  // получение поста по его id -> {post: {content: "Lorem...", id: 0, created: 123...}} :
   useEffect(() => {
     const createGetRequest = async () => {
       const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -21,10 +22,10 @@ const PostUpdate = () => {
           throw new Error(response.statusText);
         }
 
-        const json = await response.json(); // {post: {content: "Lorem...", id: 0, created: 123...}}
+        const json = await response.json();
         setPost(json.post);
-      } catch (err) {
-        console.log('err: ', err);
+      } catch {
+        setPost(null);
       }
     };
 
@@ -33,13 +34,10 @@ const PostUpdate = () => {
 
   return (
     <>
-      <HeaderCancel />
-      {/* FIXME: Нужна ли здесь проверка на post - ??? Может быть добавить ошибку... */}
+      <HeaderMenu path={`/posts/${id}`} text="Назад"/>
       {post && (
         <div className="post">
-          {/* TODO: передавать дату и время поста!!! */}
           <PostHeader created={post.created} />
-          {/* TODO: получать текст заметки и передавать в форму!!! */}
           <PostForm btnAction="Сохранить" textContent={post.content} />
         </div>
       )}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import HeaderCancel from '../../components/HeaderCancel/HeaderCancel';
+import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import PostContent from '../../components/Post/PostContent/PostContent';
 import PostEmotions from '../../components/Post/PostEmotions/PostEmotions';
 import PostHeader from '../../components/Post/PostHeader/PostHeader';
@@ -11,8 +11,8 @@ const PostRead = () => {
   const [post, setPost] = useState<IPost | null>(null);
   const { id } = useParams(); // NB! название динамического параметра должно строго совпадать!!!
 
+  // получение поста по его id -> {post: {content: "Lorem...", id: 0, created: 123...}} :
   useEffect(() => {
-    // TODO: вынести функцию 'createGetRequest' в кастомный хук - ???
     const createGetRequest = async () => {
       const baseUrl = import.meta.env.VITE_BASE_URL;
 
@@ -23,38 +23,28 @@ const PostRead = () => {
           throw new Error(response.statusText);
         }
 
-        const json = await response.json(); // {post: {content: "Lorem...", id: 0, created: 123...}}
+        const json = await response.json();
         setPost(json.post);
-      } catch (err) {
-        console.log('err: ', err);
+      } catch {
+        setPost(null);
       }
     };
 
     createGetRequest();
   }, [id]);
 
-  const handleDelete = () => {
-    const createDeleteRequest = async () => {
-      const baseUrl = import.meta.env.VITE_BASE_URL;
-
-      const options = {
-        method: 'DELETE',
-      };
-
-      try {
-        await fetch(baseUrl + `/posts/${id}`, options);
-      } catch (err) {
-        console.log('err: ', err);
-      }
-    };
-
-    createDeleteRequest();
+  const createDeleteRequest = async () => {
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+    try {
+      await fetch(baseUrl + `/posts/${id}`, { method: 'DELETE' });
+    } catch (err) {
+      console.log('err: ', err);
+    }
   };
 
   return (
     <>
-      <HeaderCancel />
-      {/* FIXME: Нужна ли здесь проверка на post - ??? Может быть добавить ошибку... */}
+      <HeaderMenu />
       {post && (
         <div className="post">
           <PostHeader created={post.created} />
@@ -62,9 +52,8 @@ const PostRead = () => {
           <PostEmotions />
           <footer className="post__footer">
             <div className="post__links">
-              {/* TODO: поменять роуты! */}
               <Link to={`/posts/update/${id}`} className="post__change">Изменить</Link>
-              <Link to="/" className="post__delete" onClick={handleDelete}>Удалить</Link>
+              <Link to="/" className="post__delete" onClick={createDeleteRequest}>Удалить</Link>
             </div>
           </footer>
         </div>

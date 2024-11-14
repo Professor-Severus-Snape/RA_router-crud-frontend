@@ -61,11 +61,11 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
     event.preventDefault(); // отмена перезагрузки страницы
     switch (btnAction) {
       case 'Опубликовать':
-        createPostRequest(); // отправка POST-запроса на сервер с данными textarea
+        createPostRequest(); // отправка POST-запроса на сервер с данными textarea <- CREATE
         navigate('/'); // возврат на главную страницу
         return;
       case 'Сохранить':
-        createPutRequest(); // отправка PUT-запроса на сервер с данными textarea
+        createPutRequest(); // отправка PUT-запроса на сервер с данными textarea <- UPDATE
         navigate('/'); // возврат на главную страницу
     }
   };

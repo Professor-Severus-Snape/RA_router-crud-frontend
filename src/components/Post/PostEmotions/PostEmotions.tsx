@@ -10,11 +10,7 @@ const PostEmotions = () => {
         <div className="post-emotions__like-text">Нравится</div>
       </div>
       <div className="post-emotions__comments">
-        <img
-          src={commentIcon}
-          alt="Комментировать"
-          className="post-emotions__comment-icon"
-        />
+        <img src={commentIcon} alt="Комментировать" className="post-emotions__comment-icon" />
         <div className="post-emotions__comment-text">Комментировать</div>
       </div>
     </div>

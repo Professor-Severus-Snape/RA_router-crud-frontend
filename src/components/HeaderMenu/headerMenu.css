@@ -1,4 +1,4 @@
-.header-add {
+.header-menu {
   display: flex;
   justify-content: flex-end;
 
@@ -8,7 +8,7 @@
   background-color: #fff;
 }
 
-.header-add__link {
+.header-menu__link {
   padding: 10px 20px;
   border-radius: 5px;
 
@@ -16,6 +16,6 @@
   background-color: #006aff;
 }
 
-.header-add__link:focus {
+.header-menu__link:focus {
   outline: 1px solid #006aff;
 }
