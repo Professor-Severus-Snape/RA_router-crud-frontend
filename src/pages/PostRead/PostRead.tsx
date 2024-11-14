@@ -33,6 +33,24 @@ const PostRead = () => {
     createGetRequest();
   }, [id]);
 
+  const handleDelete = () => {
+    const createPutRequest = async () => {
+      const baseUrl = import.meta.env.VITE_BASE_URL;
+
+      const options = {
+        method: 'DELETE',
+      };
+
+      try {
+        await fetch(baseUrl + `/posts/${id}`, options);
+      } catch (err) {
+        console.log('err: ', err);
+      }
+    };
+
+    createPutRequest();
+  };
+
   return (
     <>
       <HeaderCancel />
@@ -46,7 +64,7 @@ const PostRead = () => {
             <div className="post__links">
               {/* TODO: поменять роуты! */}
               <Link to="/" className="post__change">Изменить</Link>
-              <Link to="/" className="post__delete">Удалить</Link>
+              <Link to="/" className="post__delete" onClick={handleDelete}>Удалить</Link>
             </div>
           </footer>
         </div>
