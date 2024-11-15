@@ -19,3 +19,14 @@ ul {
   position: fixed;
   transform: scale(0);
 }
+
+.content__text {
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+
+  font-size: 32px;
+  text-align: center;
+
+  background-color: #fff;
+}

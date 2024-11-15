@@ -6,37 +6,63 @@ import './posts.css';
 
 const Posts = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // получение всех постов с сервера:
   useEffect(() => {
-    const createGetRequest = async () => {
+    const fetchData = async () => {
       const baseUrl = import.meta.env.VITE_BASE_URL;
+      // задержка появления лоадера в 1 секунду (чтобы не мелькал при перезагрузке страницы):
+      const loaderTimer = setTimeout(() => setLoading(true), 1000);
 
       try {
-        const response = await fetch(baseUrl + '/posts');
-
+        const response = await fetch(baseUrl + '/posts'); // получаем данные с сервера
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-
-        const json = await response.json();
-        setPosts(json.reverse()); // отображение самого свежего поста сверху
-      } catch {
-        setPosts([]);
+        const data = await response.json();
+        setPosts(data); // сохранение полученных данных в стейт
+        setError(null); // нет ошибки
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err); // возникла ошибка
+        }
+      } finally {
+        clearTimeout(loaderTimer); // очищаем таймаут, на случай если лоадер не успел отрисоваться
+        setLoading(false); // загрузка данных завершена
       }
     };
 
-    createGetRequest();
-  }, []);
+    fetchData();
+  }, []); // FIXME: с localhost - работает норм, а с render - отрабатывает через раз... Почему ???
 
   return (
     <>
-      <HeaderMenu path="/posts/new" text="Создать пост" />
-      <ul className="posts">
-        {posts.length
-          ? posts.map((post) => <Post key={post.id} {...post} />)
-          : null}
-      </ul>
+      {error && (
+        <div className="content__text">
+          Sorry, you've got the Error: {error.message}
+        </div>
+      )}
+
+      {loading && (
+        <div className="content__text">
+          Still loading... Wait a moment! Please, don't go away!
+        </div>
+      )}
+
+      {!error && !loading && (
+        <>
+          <HeaderMenu path="/posts/new" text="Создать пост" />
+          <ul className="posts">
+            {posts.length
+              ? posts
+                  .map((post: IPost) => <Post key={post.id} {...post} />)
+                  .reverse()
+              : null}
+          </ul>
+        </>
+      )}
     </>
   );
 };
