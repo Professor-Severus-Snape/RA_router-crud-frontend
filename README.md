@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/o14ll9i57m4r4q4m?svg=true)](https://ci.appveyor.com/project/Professor-Severus-Snape/ra-router-crud-frontend)
+
 # CRUD
 
 Вам необходимо реализовать CRUD при работе с HTTP с использованием Router.

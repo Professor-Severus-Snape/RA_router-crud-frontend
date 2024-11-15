@@ -1,5 +1,5 @@
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -13,7 +13,8 @@ import PostCreate from './pages/PostCreate/PostCreate';
 import PostUpdate from './pages/PostUpdate/PostUpdate';
 
 const App = () => {
-  const routes = createBrowserRouter(
+  // вместо createBrowserRouter берём createHashRouter, чтобы работала перезагрузка на GitHub Pages:
+  const routes = createHashRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />} errorElement={<PageError />}> {/* обработка ошиб.пути */}
         <Route index element={<Posts />} />
