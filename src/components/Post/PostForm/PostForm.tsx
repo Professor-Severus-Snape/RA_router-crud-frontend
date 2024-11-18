@@ -57,7 +57,7 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
     setContent(value); // сохранение в стейте содержимого textarea
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // отмена перезагрузки страницы
 
     const validContent = content.trim();
@@ -70,12 +70,12 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
 
     switch (btnAction) {
       case 'Опубликовать':
-        createPostRequest(validContent); // POST-запрос на сервер с данными textarea <- CREATE
-        navigate('/'); // возврат на главную страницу
+        await createPostRequest(validContent); // POST-запрос на сервер с данными textarea <- CREATE
+        navigate('/'); // возврат на главную страницу только ПОСЛЕ! завершения запроса
         return;
       case 'Сохранить':
-        createPutRequest(validContent); // PUT-запрос на сервер с данными textarea <- UPDATE
-        navigate('/'); // возврат на главную страницу
+        await createPutRequest(validContent); // PUT-запрос на сервер с данными textarea <- UPDATE
+        navigate('/'); // возврат на главную страницу только ПОСЛЕ! завершения запроса
     }
   };
 

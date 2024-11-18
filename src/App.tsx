@@ -18,9 +18,9 @@ const App = () => {
     createRoutesFromElements(
       <Route path="/" element={<Layout />} errorElement={<PageError />}> {/* обработка ошиб.пути */}
         <Route index element={<Posts />} />
-        <Route path="/posts/:id" element={<PostRead />} />
-        <Route path="/posts/new" element={<PostCreate />} />
-        <Route path="/posts/update/:id" element={<PostUpdate />} />
+        <Route path="posts/:id" element={<PostRead />} />
+        <Route path="posts/new" element={<PostCreate />} />
+        <Route path="posts/update/:id" element={<PostUpdate />} />
       </Route>
     ),
     {

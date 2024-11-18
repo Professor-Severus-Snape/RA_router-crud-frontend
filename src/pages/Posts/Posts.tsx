@@ -13,8 +13,8 @@ const Posts = () => {
   useEffect(() => {
     const fetchData = async () => {
       const baseUrl = import.meta.env.VITE_BASE_URL;
-      // задержка появления лоадера в 1 секунду (чтобы не мелькал при перезагрузке страницы):
-      const loaderTimer = setTimeout(() => setLoading(true), 1000);
+      // задержка появления лоадера в 500ms (чтобы не мелькал при перезагрузке страницы):
+      const loaderTimer = setTimeout(() => setLoading(true), 500);
 
       try {
         const response = await fetch(baseUrl + '/posts'); // получаем данные с сервера

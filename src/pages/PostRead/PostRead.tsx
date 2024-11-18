@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import PostContent from '../../components/Post/PostContent/PostContent';
 import PostEmotions from '../../components/Post/PostEmotions/PostEmotions';
@@ -12,6 +12,7 @@ const PostRead = () => {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const navigate = useNavigate();
   const { id } = useParams(); // NB! название динамического параметра должно строго совпадать!!!
 
   // получение поста по его id -> {post: {content: "Lorem...", id: 0, created: 123...}} :
@@ -51,6 +52,7 @@ const PostRead = () => {
     } catch (err) {
       console.log('err: ', err);
     }
+    navigate('/'); // возврат на главную страницу только ПОСЛЕ! завершения запроса
   };
 
   return (
@@ -77,7 +79,7 @@ const PostRead = () => {
           <footer className="post__footer">
             <div className="post__links">
               <Link to={`/posts/update/${id}`} className="post__change">Изменить</Link>
-              <Link to="/" className="post__delete" onClick={createDeleteRequest}>Удалить</Link>
+              <button type="button" className="post__delete" onClick={createDeleteRequest}>Удалить</button>
             </div>
           </footer>
         </div>

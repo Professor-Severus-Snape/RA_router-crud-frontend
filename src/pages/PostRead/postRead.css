@@ -35,8 +35,12 @@
 
 .post__delete {
   padding: 10px;
+  border: none;
   border-radius: 5px;
+  
+  font-size: inherit;
   color: #fff;
+
   background-color: rgb(255, 98, 98);
 }
 
