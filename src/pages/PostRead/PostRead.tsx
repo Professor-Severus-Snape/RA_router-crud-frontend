@@ -57,7 +57,8 @@ const PostRead = () => {
 
   return (
     <>
-      <HeaderMenu />
+      {/* возврат из режима просмотра поста к этому же посту на главной странице Posts: */}
+      <HeaderMenu path={`/#${id}`} />
 
       {error && (
         <div className="content__text">

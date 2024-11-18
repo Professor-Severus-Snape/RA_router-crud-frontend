@@ -10,7 +10,8 @@ const Post = ({ id, content, created }: IPost) => {
   const navigate = useNavigate();
 
   return (
-    <li className="post" onClick={() => navigate(`/posts/${id}`)}>
+    // задаем атрибут id по которому будем формировать хэш для скролла:
+    <li id={`${id}`} className="post" onClick={() => navigate(`/posts/${id}`)}>
       <PostHeader created={created} />
       <PostContent content={content} />
       <PostEmotions />

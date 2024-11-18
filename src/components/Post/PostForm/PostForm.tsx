@@ -75,8 +75,9 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
         return;
       case 'Сохранить':
         await createPutRequest(validContent); // PUT-запрос на сервер с данными textarea <- UPDATE
-        navigate('/'); // возврат на главную страницу только ПОСЛЕ! завершения запроса
-    }
+        // ПОСЛЕ! завершения запроса - возврат на главную страницу к отредактированному посту:
+        navigate(`/#${id}`);
+      }
   };
 
   return (

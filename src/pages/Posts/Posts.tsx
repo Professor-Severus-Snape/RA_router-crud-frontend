@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import Post from '../../components/Post/Post';
 import IPost from '../../models/IPost';
@@ -8,6 +9,8 @@ const Posts = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const location = useLocation(); // для дальнейшего считывания хэша из адресной строки
 
   // получение всех постов с сервера:
   useEffect(() => {
@@ -35,7 +38,18 @@ const Posts = () => {
     };
 
     fetchData();
-  }, []); // FIXME: с localhost - работает норм, а с render - отрабатывает через раз... Почему ???
+  }, []);
+
+  // скролл до нужного поста:
+  useEffect(() => {
+    const postIdFromHash = location.hash.slice(1); // "" или "6"
+    if (postIdFromHash) {
+      const postElement = document.getElementById(postIdFromHash); // null или <li id="6">...</li>
+      if (postElement) {
+        postElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [posts, location.hash]);
 
   return (
     <>
