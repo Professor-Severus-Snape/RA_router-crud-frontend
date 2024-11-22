@@ -47,6 +47,10 @@ const Posts = () => {
       const postElement = document.getElementById(postIdFromHash); // null или <li id="6">...</li>
       if (postElement) {
         postElement.scrollIntoView({ behavior: 'smooth' });
+
+        // добавление подсветки к нужному посту:
+        postElement.classList.add('highlight');
+        setTimeout(() => postElement.classList.remove('highlight'), 2 * 1000);
       }
     }
   }, [posts, location.hash]);

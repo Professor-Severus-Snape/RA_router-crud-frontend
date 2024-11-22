@@ -3,3 +3,16 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.highlight {
+  animation: highlight 2s ease-out;
+}
+
+@keyframes highlight {
+  from {
+    background-color: #fff3cd;
+  }
+  to {
+    background-color: #fff;
+  }
+}
