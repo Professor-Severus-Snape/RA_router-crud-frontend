@@ -1,5 +1,5 @@
 import {
-  createHashRouter,
+  createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -13,8 +13,7 @@ import PostCreate from './pages/PostCreate/PostCreate';
 import PostUpdate from './pages/PostUpdate/PostUpdate';
 
 const App = () => {
-  // вместо createBrowserRouter берём createHashRouter, чтобы работала перезагрузка на GitHub Pages:
-  const routes = createHashRouter(
+  const routes = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />} errorElement={<PageError />}> {/* обработка ошиб.пути */}
         <Route index element={<Posts />} />
@@ -24,6 +23,8 @@ const App = () => {
       </Route>
     ),
     {
+      // добавляем 'basename' значение которого будет взято из конфига vite:
+      basename: import.meta.env.BASE_URL,
       future: {
         v7_relativeSplatPath: true,
         v7_fetcherPersist: true,

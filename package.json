@@ -4,7 +4,6 @@
   "type": "module",
   "author": "professor-severus-snape",
   "license": "MIT",
-  "homepage": "https://professor-severus-snape.github.io/RA_router-crud-frontend",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
