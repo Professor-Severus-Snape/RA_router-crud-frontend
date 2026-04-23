@@ -32,11 +32,11 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
     }
   };
 
-  const createPutRequest = async (validContent: string) => {
+  const createPatchRequest = async (validContent: string) => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const options = {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -74,16 +74,18 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
         navigate('/'); // возврат на главную страницу только ПОСЛЕ! завершения запроса
         return;
       case 'Сохранить':
-        await createPutRequest(validContent); // PUT-запрос на сервер с данными textarea <- UPDATE
+        await createPatchRequest(validContent); // PUT-запрос на сервер с данными textarea <- UPDATE
         // ПОСЛЕ! завершения запроса - возврат на главную страницу к отредактированному посту:
         navigate(`/#${id}`);
-      }
+    }
   };
 
   return (
     <form className="post-form" onSubmit={handleSubmit}>
       <textarea className="post-form__textarea" value={content} onChange={handleChange} required />
-      <button type="submit" className="post-form__btn">{btnAction}</button>
+      <button type="submit" className="post-form__btn">
+        {btnAction}
+      </button>
     </form>
   );
 };

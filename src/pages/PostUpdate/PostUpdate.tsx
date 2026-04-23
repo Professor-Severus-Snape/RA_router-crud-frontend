@@ -1,10 +1,10 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import PostForm from '../../components/Post/PostForm/PostForm';
 import PostHeader from '../../components/Post/PostHeader/PostHeader';
-import './postUpdate.css';
-import { useEffect, useState } from 'react';
 import type IPost from '../../models/IPost';
+import './postUpdate.css';
 
 const PostUpdate = () => {
   const [post, setPost] = useState<IPost | null>(null);

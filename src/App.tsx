@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
+import Loader from './components/Loader/Loader';
 import PageError from './pages/PageError/PageError';
 import Posts from './pages/Posts/Posts';
 import PostRead from './pages/PostRead/PostRead';
@@ -8,6 +10,36 @@ import PostCreate from './pages/PostCreate/PostCreate';
 import PostUpdate from './pages/PostUpdate/PostUpdate';
 
 const App = () => {
+  const [isServerReady, setIsServerReady] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
+
+  useEffect(() => {
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+
+    const timer = setTimeout(() => {
+      setShowLoader(true);
+    }, 500);
+
+    const pingServer = async () => {
+      try {
+        await fetch(baseUrl + '/ping');
+      } catch (err) {
+        console.error('Ping failed: ', err);
+      } finally {
+        clearTimeout(timer);
+        setIsServerReady(true);
+      }
+    };
+
+    pingServer();
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isServerReady) {
+    return showLoader ? <Loader /> : null;
+  }
+
   const routes = [
     {
       path: '/',
