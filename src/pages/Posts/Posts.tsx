@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import Post from '../../components/Post/Post';
-import IPost from '../../models/IPost';
+import type IPost from '../../models/IPost';
 import './posts.css';
 
 const Posts = () => {
@@ -57,16 +57,10 @@ const Posts = () => {
 
   return (
     <>
-      {error && (
-        <div className="content__text">
-          Sorry, you've got the Error: {error.message}
-        </div>
-      )}
+      {error && <div className="content__text">Sorry, you've got the Error: {error.message}</div>}
 
       {loading && (
-        <div className="content__text">
-          Still loading... Wait a moment! Please, don't go away!
-        </div>
+        <div className="content__text">Still loading... Wait a moment! Please, don't go away!</div>
       )}
 
       {!error && !loading && (
@@ -74,9 +68,7 @@ const Posts = () => {
           <HeaderMenu path="/posts/new" text="Создать пост" />
           <ul className="posts">
             {posts.length
-              ? posts
-                  .map((post: IPost) => <Post key={post.id} {...post} />)
-                  .reverse()
+              ? posts.map((post: IPost) => <Post key={post.id} {...post} />).reverse()
               : null}
           </ul>
         </>

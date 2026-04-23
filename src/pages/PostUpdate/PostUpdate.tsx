@@ -4,7 +4,7 @@ import PostForm from '../../components/Post/PostForm/PostForm';
 import PostHeader from '../../components/Post/PostHeader/PostHeader';
 import './postUpdate.css';
 import { useEffect, useState } from 'react';
-import IPost from '../../models/IPost';
+import type IPost from '../../models/IPost';
 
 const PostUpdate = () => {
   const [post, setPost] = useState<IPost | null>(null);

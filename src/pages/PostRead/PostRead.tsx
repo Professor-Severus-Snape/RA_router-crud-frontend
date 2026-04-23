@@ -4,7 +4,7 @@ import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import PostContent from '../../components/Post/PostContent/PostContent';
 import PostEmotions from '../../components/Post/PostEmotions/PostEmotions';
 import PostHeader from '../../components/Post/PostHeader/PostHeader';
-import IPost from '../../models/IPost';
+import type IPost from '../../models/IPost';
 import './postRead.css';
 
 const PostRead = () => {

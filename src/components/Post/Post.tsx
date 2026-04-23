@@ -3,7 +3,7 @@ import PostContent from './PostContent/PostContent';
 import PostEmotions from './PostEmotions/PostEmotions';
 import PostFooter from './PostFooter/PostFooter';
 import PostHeader from './PostHeader/PostHeader';
-import IPost from '../../models/IPost';
+import type IPost from '../../models/IPost';
 import './post.css';
 
 const Post = ({ id, content, created }: IPost) => {
