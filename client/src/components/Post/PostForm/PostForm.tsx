@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { API_URL } from '../../../config';
 import './postForm.css';
 
 interface IPostFormProps {
@@ -13,8 +14,6 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
   const { id } = useParams();
 
   const createPostRequest = async (validContent: string) => {
-    const baseUrl = import.meta.env.VITE_BASE_URL;
-
     const options = {
       method: 'POST',
       headers: {
@@ -26,15 +25,13 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
     };
 
     try {
-      await fetch(baseUrl + '/posts', options);
+      await fetch(API_URL + '/posts', options);
     } catch (err) {
       console.log('err: ', err);
     }
   };
 
   const createPatchRequest = async (validContent: string) => {
-    const baseUrl = import.meta.env.VITE_BASE_URL;
-
     const options = {
       method: 'PATCH',
       headers: {
@@ -46,7 +43,7 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
     };
 
     try {
-      await fetch(baseUrl + `/posts/${id}`, options);
+      await fetch(API_URL + `/posts/${id}`, options);
     } catch (err) {
       console.log('err: ', err);
     }

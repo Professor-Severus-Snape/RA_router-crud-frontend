@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { API_URL } from './config';
+
 import Layout from './components/Layout/Layout';
 import Loader from './components/Loader/Loader';
+
 import PageError from './pages/PageError/PageError';
 import Posts from './pages/Posts/Posts';
 import PostRead from './pages/PostRead/PostRead';
@@ -14,15 +17,13 @@ const App = () => {
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
-    const baseUrl = import.meta.env.VITE_BASE_URL;
-
     const timer = setTimeout(() => {
       setShowLoader(true);
     }, 500);
 
     const pingServer = async () => {
       try {
-        await fetch(baseUrl + '/ping');
+        await fetch(API_URL + '/ping');
       } catch (err) {
         console.error('Ping failed: ', err);
       } finally {

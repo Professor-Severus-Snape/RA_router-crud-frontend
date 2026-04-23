@@ -1,0 +1,22 @@
+{
+  "name": "posts-router_backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "author": "professor-severus-snape",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "cors": "2.8.6",
+    "express": "5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.2.1",
+    "globals": "17.5.0"
+  }
+}

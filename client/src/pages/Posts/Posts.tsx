@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import { API_URL } from '../../config';
+
 import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import Post from '../../components/Post/Post';
 import type IPost from '../../models/IPost';
@@ -15,12 +18,11 @@ const Posts = () => {
   // получение всех постов с сервера:
   useEffect(() => {
     const fetchData = async () => {
-      const baseUrl = import.meta.env.VITE_BASE_URL;
       // задержка появления лоадера в 500ms (чтобы не мелькал при перезагрузке страницы):
       const loaderTimer = setTimeout(() => setLoading(true), 500);
 
       try {
-        const response = await fetch(baseUrl + '/posts'); // получаем данные с сервера
+        const response = await fetch(API_URL + '/posts'); // получаем данные с сервера
         if (!response.ok) {
           throw new Error(response.statusText);
         }

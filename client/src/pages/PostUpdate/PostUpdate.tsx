@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { API_URL } from '../../config';
+import type IPost from '../../models/IPost';
+
 import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import PostForm from '../../components/Post/PostForm/PostForm';
 import PostHeader from '../../components/Post/PostHeader/PostHeader';
-import type IPost from '../../models/IPost';
+
 import './postUpdate.css';
 
 const PostUpdate = () => {
@@ -16,12 +20,11 @@ const PostUpdate = () => {
   // получение поста по его id -> {post: {content: "Lorem...", id: 0, created: 123...}} :
   useEffect(() => {
     const fetchData = async () => {
-      const baseUrl = import.meta.env.VITE_BASE_URL;
       // задержка появления лоадера в 1 секунду (чтобы не мелькал при перезагрузке страницы):
       const loaderTimer = setTimeout(() => setLoading(true), 1000);
 
       try {
-        const response = await fetch(baseUrl + `/posts/${id}`); // получаем данные с сервера
+        const response = await fetch(API_URL + `/posts/${id}`); // получаем данные с сервера
 
         if (!response.ok) {
           throw new Error(response.statusText);

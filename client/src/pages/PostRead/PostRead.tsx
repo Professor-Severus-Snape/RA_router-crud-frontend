@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+
+import { API_URL } from '../../config';
+
 import HeaderMenu from '../../components/HeaderMenu/HeaderMenu';
 import PostContent from '../../components/Post/PostContent/PostContent';
 import PostEmotions from '../../components/Post/PostEmotions/PostEmotions';
@@ -18,12 +21,11 @@ const PostRead = () => {
   // получение поста по его id -> {post: {content: "Lorem...", id: 0, created: 123...}} :
   useEffect(() => {
     const fetchData = async () => {
-      const baseUrl = import.meta.env.VITE_BASE_URL;
       // задержка появления лоадера в 1 секунду (чтобы не мелькал при перезагрузке страницы):
       const loaderTimer = setTimeout(() => setLoading(true), 1000);
 
       try {
-        const response = await fetch(baseUrl + `/posts/${id}`); // получаем данные с сервера
+        const response = await fetch(API_URL + `/posts/${id}`); // получаем данные с сервера
 
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -46,9 +48,8 @@ const PostRead = () => {
   }, [id]);
 
   const createDeleteRequest = async () => {
-    const baseUrl = import.meta.env.VITE_BASE_URL;
     try {
-      await fetch(baseUrl + `/posts/${id}`, { method: 'DELETE' });
+      await fetch(API_URL + `/posts/${id}`, { method: 'DELETE' });
     } catch (err) {
       console.log('err: ', err);
     }
