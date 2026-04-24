@@ -27,7 +27,8 @@ let nextId = 1; // для создания id постов
 
 // получение всех постов:
 app.get('/posts', (_request, response) => {
-  response.status(200).json(posts);
+  const sortedPosts = [...posts].sort((a, b) => b.created - a.created);
+  response.status(200).json(sortedPosts);
 });
 
 // получение одного конкретного поста по его id (динамический параметр):
