@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import pingServer from '../utils/pingServer';
+import pingServer from '../loaders/pingServer';
 
 import Layout from '../components/Layout/Layout';
 import Loader from '../components/Loader/Loader';
