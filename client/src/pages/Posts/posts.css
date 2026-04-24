@@ -10,7 +10,7 @@
 
 @keyframes highlight {
   from {
-    background-color: #fff3cd;
+    background-color: rgba(0, 106, 255, 0.12);
   }
   to {
     background-color: #fff;
