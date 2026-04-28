@@ -5,9 +5,11 @@ import iconNote from '../../../assets/note.svg';
 import './postFooter.css';
 
 const PostFooter = () => {
+  const avatar = `${import.meta.env.BASE_URL}avatar.jpeg`;
+
   return (
     <footer className="post-footer">
-      <img src="https://i.pravatar.cc" alt="avatar" className="post-footer__avatar" />
+      <img src={avatar} alt="avatar" className="post-footer__avatar" />
       <label htmlFor="comment" className="visually-hidden">Ваш комментарий</label>
       <div className="post-footer__input-with-icons">
         <input
