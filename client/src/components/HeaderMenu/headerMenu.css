@@ -19,3 +19,7 @@
 .header-menu__link:focus {
   outline: 1px solid #006aff;
 }
+
+.header-menu__link:hover {
+  outline: 1px solid #006aff;
+}

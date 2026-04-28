@@ -79,7 +79,13 @@ const PostForm = ({ btnAction, textContent = '' }: IPostFormProps) => {
 
   return (
     <form className="post-form" onSubmit={handleSubmit}>
-      <textarea className="post-form__textarea" value={content} onChange={handleChange} required />
+      <textarea
+        className="post-form__textarea"
+        value={content}
+        onChange={handleChange}
+        placeholder="Введите текст..."
+        required
+      />
       <button type="submit" className="post-form__btn">
         {btnAction}
       </button>

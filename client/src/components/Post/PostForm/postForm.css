@@ -5,15 +5,18 @@
 }
 
 .post-form__textarea {
-  border: none;
+  border: 1px solid #006aff;
   padding: 10px;
   width: 100%;
   min-height: 150px;
   resize: none;
 
   font-size: inherit;
+}
 
-  background-color: lightgray;
+.post-form__textarea::placeholder {
+  font-size: inherit;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .post-form__textarea:focus {
